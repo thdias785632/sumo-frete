@@ -7,24 +7,20 @@ Ola, pessoal! Este documento explica o que foi feito no projeto, como ele
 funciona e como voces podem rodar e modificar no computador de voces.
 
 
-================================================================================
-1. O QUE E ESTE PROJETO?
-================================================================================
-
 Este projeto simula caminhoes de frete percorrendo 3 rotas diferentes entre
 um Centro de Distribuicao (ponto A) e um Cliente (ponto B), e mede quanto
 cada rota polui (CO2, NOx, CO, material particulado, etc).
 
-A ideia e mostrar que a rota mais CURTA nao e necessariamente a que MENOS
+A ideia e mostrar que a rota mais CURTA nao é necessariamente a que MENOS
 POLUI, porque semaforos e paradas forcadas fazem o caminhao acelerar e frear
 repetidamente, o que gasta mais combustivel por km.
 
-Usamos o software SUMO (Simulation of Urban MObility), que e um simulador
+Usamos o software SUMO (Simulation of Urban MObility), que é um simulador
 de trafego de codigo aberto desenvolvido pelo DLR (agencia espacial alema).
 
 
 ================================================================================
-2. ESTRUTURA DAS PASTAS
+ESTRUTURA DAS PASTAS
 ================================================================================
 
 sumo-frete/
@@ -63,7 +59,7 @@ sumo-frete/
 
 
 ================================================================================
-3. AS 3 ROTAS - COMO FUNCIONA A REDE
+AS 3 ROTAS - COMO FUNCIONA A REDE
 ================================================================================
 
 Imaginem um mapa simples:
@@ -89,7 +85,7 @@ O semaforo em N1 e o que causa o efeito de "para-e-anda" na rota urbana.
 
 
 ================================================================================
-4. OS 4 CENARIOS
+OS 4 CENARIOS
 ================================================================================
 
   Cenario A: Rota Urbana  + Caminhao Euro IV  (padrao atual)
@@ -104,29 +100,10 @@ O semaforo em N1 e o que causa o efeito de "para-e-anda" na rota urbana.
 
 
 ================================================================================
-5. COMO INSTALAR E RODAR (PASSO A PASSO)
+COMO RODAR (PASSO A PASSO)
 ================================================================================
 
---- PASSO 1: Instalar o SUMO ---
-
-  Windows:
-    1. Acesse: https://sumo.dlr.de/docs/Downloads.php
-    2. Baixe o instalador Windows (.msi)
-    3. Instale e marque a opcao de adicionar ao PATH
-    4. Abra o CMD e digite: sumo --version
-       (deve aparecer a versao do SUMO)
-
-  Linux (Ubuntu):
-    sudo add-apt-repository ppa:sumo/stable
-    sudo apt-get update
-    sudo apt-get install sumo sumo-tools
-
---- PASSO 2: Clonar o repositorio ---
-
-    git clone https://github.com/thdias785632/sumo-frete.git
-    cd sumo-frete
-
---- PASSO 3: Gerar a rede viaria ---
+--- PASSO 1: Gerar a rede viaria ---
 
   Este passo converte os arquivos de entrada (nos + vias) no formato
   que o SUMO entende.
@@ -140,7 +117,7 @@ O semaforo em N1 e o que causa o efeito de "para-e-anda" na rota urbana.
 
   Deve aparecer: "Rede gerada com sucesso"
 
---- PASSO 4: Rodar as simulacoes ---
+--- PASSO 2: Rodar as simulacoes ---
 
   COM interface grafica (recomendado para ver os caminhoes andando):
 
@@ -159,7 +136,7 @@ O semaforo em N1 e o que causa o efeito de "para-e-anda" na rota urbana.
     sumo -c configs/simulacao_cenario_C.sumocfg
     sumo -c configs/simulacao_cenario_D.sumocfg
 
---- PASSO 5: Analisar os resultados ---
+--- PASSO 3: Analisar os resultados ---
 
   Primeiro, instalar as bibliotecas Python:
     pip install pandas matplotlib lxml
@@ -175,7 +152,7 @@ O semaforo em N1 e o que causa o efeito de "para-e-anda" na rota urbana.
 
 
 ================================================================================
-6. O QUE O SUMO FAZ POR DENTRO
+O QUE O SUMO FAZ POR DENTRO
 ================================================================================
 
 O SUMO simula cada caminhao INDIVIDUALMENTE, segundo a segundo:
@@ -196,7 +173,7 @@ EU4/EU3 = Padrao de emissao europeu (Euro IV e mais limpo que Euro III)
 
 
 ================================================================================
-7. RESULTADOS E CONCLUSOES
+RESULTADOS E CONCLUSOES
 ================================================================================
 
 Emissoes POR KM POR VEICULO (normalizadas para comparacao justa):
@@ -223,7 +200,7 @@ CONCLUSOES:
 
 
 ================================================================================
-8. COMO MODIFICAR O PROJETO
+COMO MODIFICAR O PROJETO
 ================================================================================
 
   Quer mudar a velocidade de uma rota?
@@ -248,7 +225,7 @@ CONCLUSOES:
 
 
 ================================================================================
-9. TERMOS IMPORTANTES
+TERMOS IMPORTANTES
 ================================================================================
 
   SUMO     = Simulation of Urban MObility (simulador de trafego)
@@ -265,8 +242,3 @@ CONCLUSOES:
   PMx      = Material particulado (afeta saude respiratoria)
   CO       = Monoxido de carbono (toxico)
   HC       = Hidrocarbonetos nao queimados
-
-
-================================================================================
-  Qualquer duvida, falem com o Thiago!
-================================================================================

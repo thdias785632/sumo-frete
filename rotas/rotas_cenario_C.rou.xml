@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Cenario C: Rota Rodovia com caminhao Euro IV -->
+<routes>
+    <!-- Caminhao pesado diesel Euro IV (HBEFA3) -->
+    <vType id="caminhao_euroIV"
+           vClass="truck"
+           emissionClass="HBEFA3/HDV_D_EU4"
+           length="12.0"
+           maxSpeed="27.78"
+           accel="1.0"
+           decel="4.0"
+           sigma="0.5"
+           color="204,51,0"/>
+
+    <!-- ROTA 3: Rodovia (A -> N3 -> B), 9 km, 100 km/h, sem semaforo -->
+    <route id="rota_rodovia" edges="via_3A via_3B"/>
+
+    <!-- 5 caminhoes com intervalo de 60 segundos -->
+    <vehicle id="camC_0" type="caminhao_euroIV" route="rota_rodovia" depart="0"   />
+    <vehicle id="camC_1" type="caminhao_euroIV" route="rota_rodovia" depart="60"  />
+    <vehicle id="camC_2" type="caminhao_euroIV" route="rota_rodovia" depart="120" />
+    <vehicle id="camC_3" type="caminhao_euroIV" route="rota_rodovia" depart="180" />
+    <vehicle id="camC_4" type="caminhao_euroIV" route="rota_rodovia" depart="240" />
+</routes>

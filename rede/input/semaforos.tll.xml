@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Semaforos (traffic lights) -->
+<tlLogics>
+    <!-- Semaforo em N1: ciclo 100s (60s verde + 5s amarelo + 35s vermelho) -->
+    <tlLogic id="N1" type="static" programID="0" offset="0">
+        <!-- Fase verde: todas as vias com verde (60s) -->
+        <phase duration="60" state="GG"/>
+        <!-- Fase amarelo (5s) -->
+        <phase duration="5"  state="yy"/>
+        <!-- Fase vermelha (35s) -->
+        <phase duration="35" state="rr"/>
+    </tlLogic>
+</tlLogics>

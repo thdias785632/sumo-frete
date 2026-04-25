@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Cenario B: Rota Arterial com caminhao Euro IV -->
+<routes>
+    <!-- Caminhao pesado diesel Euro IV (HBEFA3) -->
+    <vType id="caminhao_euroIV"
+           vClass="truck"
+           emissionClass="HBEFA3/HDV_D_EU4"
+           length="12.0"
+           maxSpeed="19.44"
+           accel="1.0"
+           decel="4.0"
+           sigma="0.5"
+           color="0,153,51"/>
+
+    <!-- ROTA 2: Arterial (A -> N2 -> B), 7 km, 70 km/h, sem semaforo -->
+    <route id="rota_arterial" edges="via_2A via_2B"/>
+
+    <!-- 5 caminhoes com intervalo de 60 segundos -->
+    <vehicle id="camB_0" type="caminhao_euroIV" route="rota_arterial" depart="0"   />
+    <vehicle id="camB_1" type="caminhao_euroIV" route="rota_arterial" depart="60"  />
+    <vehicle id="camB_2" type="caminhao_euroIV" route="rota_arterial" depart="120" />
+    <vehicle id="camB_3" type="caminhao_euroIV" route="rota_arterial" depart="180" />
+    <vehicle id="camB_4" type="caminhao_euroIV" route="rota_arterial" depart="240" />
+</routes>

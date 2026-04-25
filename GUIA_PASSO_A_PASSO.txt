@@ -1,0 +1,272 @@
+================================================================================
+  GUIA PASSO A PASSO - PROJETO SUMO DE FRETE
+  ESTU024-17 - Analise de Sistemas e Modelagem Ambiental (ASMA) / UFABC
+================================================================================
+
+Ola, pessoal! Este documento explica o que foi feito no projeto, como ele
+funciona e como voces podem rodar e modificar no computador de voces.
+
+
+================================================================================
+1. O QUE E ESTE PROJETO?
+================================================================================
+
+Este projeto simula caminhoes de frete percorrendo 3 rotas diferentes entre
+um Centro de Distribuicao (ponto A) e um Cliente (ponto B), e mede quanto
+cada rota polui (CO2, NOx, CO, material particulado, etc).
+
+A ideia e mostrar que a rota mais CURTA nao e necessariamente a que MENOS
+POLUI, porque semaforos e paradas forcadas fazem o caminhao acelerar e frear
+repetidamente, o que gasta mais combustivel por km.
+
+Usamos o software SUMO (Simulation of Urban MObility), que e um simulador
+de trafego de codigo aberto desenvolvido pelo DLR (agencia espacial alema).
+
+
+================================================================================
+2. ESTRUTURA DAS PASTAS
+================================================================================
+
+sumo-frete/
+|
+|-- rede/                  -> Arquivos da REDE VIARIA (ruas e intersecoes)
+|   |-- input/
+|   |   |-- nos.nod.xml    -> Define os PONTOS (nos/intersecoes) da rede
+|   |   |-- vias.edg.xml   -> Define as RUAS (vias) que conectam os pontos
+|   |   |-- semaforos.tll.xml -> Define o semaforo no cruzamento urbano
+|   |-- gerar_rede.sh      -> Script para gerar a rede (Linux/Mac)
+|   |-- gerar_rede.bat     -> Script para gerar a rede (Windows)
+|   |-- rede_frete.net.xml -> Rede gerada (arquivo que o SUMO usa)
+|
+|-- rotas/                 -> Arquivos de ROTAS e VEICULOS
+|   |-- rotas_cenario_A.rou.xml -> Cenario A: Rota Urbana, caminhao Euro IV
+|   |-- rotas_cenario_B.rou.xml -> Cenario B: Rota Arterial, caminhao Euro IV
+|   |-- rotas_cenario_C.rou.xml -> Cenario C: Rota Rodovia, caminhao Euro IV
+|   |-- rotas_cenario_D.rou.xml -> Cenario D: Rota Urbana, caminhao Euro III
+|
+|-- configs/               -> Arquivos de CONFIGURACAO do SUMO
+|   |-- simulacao_cenario_A.sumocfg -> Junta a rede + rota do cenario A
+|   |-- simulacao_cenario_B.sumocfg -> Junta a rede + rota do cenario B
+|   |-- simulacao_cenario_C.sumocfg -> Junta a rede + rota do cenario C
+|   |-- simulacao_cenario_D.sumocfg -> Junta a rede + rota do cenario D
+|
+|-- resultados/            -> Saidas da simulacao (emissoes, tempos, etc)
+|
+|-- analise/               -> Script Python e graficos gerados
+|   |-- analisar_emissoes.py    -> Le os resultados e gera tabela + graficos
+|   |-- tabela_emissoes.csv     -> Tabela para importar no Excel
+|   |-- grafico_comparativo.png -> Grafico de CO2 e NOx
+|   |-- grafico_detalhado.png   -> Grafico de todos os poluentes
+|
+|-- README.md              -> Documentacao geral do projeto
+|-- GUIA_PASSO_A_PASSO.txt -> Este arquivo que voce esta lendo :)
+
+
+================================================================================
+3. AS 3 ROTAS - COMO FUNCIONA A REDE
+================================================================================
+
+Imaginem um mapa simples:
+
+    [A] ----via_1A----> [N1] ----via_1B----> [B]     ROTA 1: URBANA
+     |                                        ^
+     +---via_2A----> [N2] ----via_2B---------+       ROTA 2: ARTERIAL
+     |                                        |
+     +---via_3A----> [N3] ----via_3B---------+       ROTA 3: RODOVIA
+
+  A = Centro de Distribuicao (origem dos caminhoes)
+  B = Cliente (destino)
+  N1, N2, N3 = Intersecoes intermediarias
+
+  ROTA 1 (Urbana):   5 km, max 50 km/h, 1 faixa, TEM SEMAFORO em N1
+  ROTA 2 (Arterial): 7 km, max 70 km/h, 2 faixas, SEM semaforo
+  ROTA 3 (Rodovia):  9 km, max 100 km/h, 2 faixas, SEM semaforo
+
+As rotas sao GEOMETRICAMENTE DIFERENTES - cada uma passa por um no
+diferente (N1, N2 ou N3), com distancias e velocidades diferentes.
+
+O semaforo em N1 e o que causa o efeito de "para-e-anda" na rota urbana.
+
+
+================================================================================
+4. OS 4 CENARIOS
+================================================================================
+
+  Cenario A: Rota Urbana  + Caminhao Euro IV  (padrao atual)
+  Cenario B: Rota Arterial + Caminhao Euro IV
+  Cenario C: Rota Rodovia  + Caminhao Euro IV
+  Cenario D: Rota Urbana  + Caminhao Euro III (frota mais antiga/poluente)
+
+  Em cada cenario, 5 caminhoes saem do ponto A com intervalo de 60 segundos.
+
+  O cenario D serve para comparar: mesma rota, mas com caminhao mais velho.
+  Isso mostra o impacto da renovacao da frota na poluicao.
+
+
+================================================================================
+5. COMO INSTALAR E RODAR (PASSO A PASSO)
+================================================================================
+
+--- PASSO 1: Instalar o SUMO ---
+
+  Windows:
+    1. Acesse: https://sumo.dlr.de/docs/Downloads.php
+    2. Baixe o instalador Windows (.msi)
+    3. Instale e marque a opcao de adicionar ao PATH
+    4. Abra o CMD e digite: sumo --version
+       (deve aparecer a versao do SUMO)
+
+  Linux (Ubuntu):
+    sudo add-apt-repository ppa:sumo/stable
+    sudo apt-get update
+    sudo apt-get install sumo sumo-tools
+
+--- PASSO 2: Clonar o repositorio ---
+
+    git clone https://github.com/thdias785632/sumo-frete.git
+    cd sumo-frete
+
+--- PASSO 3: Gerar a rede viaria ---
+
+  Este passo converte os arquivos de entrada (nos + vias) no formato
+  que o SUMO entende.
+
+  Windows (CMD):
+    rede\gerar_rede.bat
+
+  Linux/Mac:
+    chmod +x rede/gerar_rede.sh
+    ./rede/gerar_rede.sh
+
+  Deve aparecer: "Rede gerada com sucesso"
+
+--- PASSO 4: Rodar as simulacoes ---
+
+  COM interface grafica (recomendado para ver os caminhoes andando):
+
+    sumo-gui -c configs/simulacao_cenario_A.sumocfg
+    sumo-gui -c configs/simulacao_cenario_B.sumocfg
+    sumo-gui -c configs/simulacao_cenario_C.sumocfg
+    sumo-gui -c configs/simulacao_cenario_D.sumocfg
+
+    Dica: No sumo-gui, clique no botao PLAY (triangulo verde) para
+    iniciar a simulacao. Voces vao ver os caminhoes se movendo!
+
+  SEM interface (mais rapido, so gera os resultados):
+
+    sumo -c configs/simulacao_cenario_A.sumocfg
+    sumo -c configs/simulacao_cenario_B.sumocfg
+    sumo -c configs/simulacao_cenario_C.sumocfg
+    sumo -c configs/simulacao_cenario_D.sumocfg
+
+--- PASSO 5: Analisar os resultados ---
+
+  Primeiro, instalar as bibliotecas Python:
+    pip install pandas matplotlib lxml
+
+  Depois, rodar o script de analise:
+    python analise/analisar_emissoes.py
+
+  Isso gera:
+    - Tabela no terminal com todos os poluentes
+    - tabela_emissoes.csv (para abrir no Excel)
+    - grafico_comparativo.png (CO2 e NOx)
+    - grafico_detalhado.png (todos os poluentes)
+
+
+================================================================================
+6. O QUE O SUMO FAZ POR DENTRO
+================================================================================
+
+O SUMO simula cada caminhao INDIVIDUALMENTE, segundo a segundo:
+
+  - Calcula a velocidade e aceleracao em cada instante
+  - Usa o modelo de emissao HBEFA 3 (europeu) para calcular quanto
+    cada caminhao emite de CO2, NOx, CO, HC, PMx e combustivel
+  - O modelo HBEFA considera: velocidade, aceleracao, tipo do veiculo,
+    tipo de combustivel (diesel) e padrao de emissao (Euro III ou IV)
+
+Classes de emissao usadas:
+  - HBEFA3/HDV_D_EU4 = Caminhao pesado diesel Euro IV (frota atual)
+  - HBEFA3/HDV_D_EU3 = Caminhao pesado diesel Euro III (frota antiga)
+
+HDV = Heavy Duty Vehicle (veiculo pesado)
+D = Diesel
+EU4/EU3 = Padrao de emissao europeu (Euro IV e mais limpo que Euro III)
+
+
+================================================================================
+7. RESULTADOS E CONCLUSOES
+================================================================================
+
+Emissoes POR KM POR VEICULO (normalizadas para comparacao justa):
+
+  Cenario A (Urbana, Euro IV):   CO2 = 1.028.255 g/km | NOx = 6.685 g/km
+  Cenario B (Arterial, Euro IV): CO2 =   973.364 g/km | NOx = 6.077 g/km
+  Cenario C (Rodovia, Euro IV):  CO2 =   938.646 g/km | NOx = 5.638 g/km
+  Cenario D (Urbana, Euro III):  CO2 = 1.026.185 g/km | NOx = 8.203 g/km
+
+CONCLUSOES:
+
+  1) A rota urbana emite 9,5% MAIS CO2 por km que a rodovia.
+     Motivo: o semaforo forca o caminhao a frear e acelerar, o que
+     consome mais combustivel por km percorrido.
+
+  2) Euro III emite 22,7% MAIS NOx e 520,7% MAIS material particulado
+     que Euro IV na mesma rota.
+     Motivo: a tecnologia de controle de emissoes do Euro IV e muito
+     mais eficiente.
+
+  3) Em emissao TOTAL, a rota urbana (5 km) polui menos que a rodovia
+     (9 km) simplesmente porque e mais curta. Mas POR KM, polui mais.
+     Isso confirma a hipotese do trabalho.
+
+
+================================================================================
+8. COMO MODIFICAR O PROJETO
+================================================================================
+
+  Quer mudar a velocidade de uma rota?
+    -> Edite rede/input/vias.edg.xml (campo "speed" em m/s)
+    -> Rode gerar_rede.sh novamente
+
+  Quer mudar o numero de caminhoes?
+    -> Edite rotas/rotas_cenario_X.rou.xml
+    -> Adicione/remova linhas <vehicle>
+
+  Quer mudar o tempo do semaforo?
+    -> Edite rede/input/semaforos.tll.xml
+    -> Rode gerar_rede.sh novamente
+
+  Quer adicionar um novo cenario?
+    -> Crie um novo .rou.xml em rotas/
+    -> Crie um novo .sumocfg em configs/
+    -> Adicione o cenario no dicionario CENARIOS do script Python
+
+  IMPORTANTE: Apos qualquer mudanca na rede, rode gerar_rede.sh/bat
+  antes de rodar a simulacao.
+
+
+================================================================================
+9. TERMOS IMPORTANTES
+================================================================================
+
+  SUMO     = Simulation of Urban MObility (simulador de trafego)
+  HBEFA    = Handbook Emission Factors for Road Transport
+  netconvert = Ferramenta do SUMO que gera a rede a partir dos XMLs
+  .net.xml = Arquivo de rede viaria (gerado pelo netconvert)
+  .rou.xml = Arquivo de rotas e veiculos
+  .sumocfg = Arquivo de configuracao que junta tudo
+  vType    = Tipo de veiculo (define emissao, velocidade, tamanho)
+  edge     = Via/rua no SUMO
+  node     = Intersecao/cruzamento no SUMO
+  CO2      = Dioxido de carbono (principal gas de efeito estufa)
+  NOx      = Oxidos de nitrogenio (poluente local, causa chuva acida)
+  PMx      = Material particulado (afeta saude respiratoria)
+  CO       = Monoxido de carbono (toxico)
+  HC       = Hidrocarbonetos nao queimados
+
+
+================================================================================
+  Qualquer duvida, falem com o Thiago!
+================================================================================

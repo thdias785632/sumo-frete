@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Cenario A: Rota Urbana com caminhao Euro IV -->
+<configuration>
+    <input>
+        <net-file value="../rede/rede_frete.net.xml"/>
+        <route-files value="../rotas/rotas_cenario_A.rou.xml"/>
+    </input>
+    <output>
+        <emission-output value="../resultados/emissoes_cenario_A.xml"/>
+        <tripinfo-output value="../resultados/tripinfo_cenario_A.xml"/>
+        <summary-output value="../resultados/summary_cenario_A.xml"/>
+    </output>
+    <time>
+        <begin value="0"/>
+        <end value="1200"/>
+        <step-length value="1.0"/>
+    </time>
+    <processing>
+        <default.speeddev value="0"/>
+    </processing>
+</configuration>

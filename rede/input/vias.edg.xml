@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Vias (edges) da rede de frete -->
+<edges>
+    <!-- ===== ROTA 1: URBANA (A -> N1 -> B) ===== -->
+    <!-- Total ~5 km, velocidade max 50 km/h = 13.89 m/s, 1 faixa -->
+    <edge id="via_1A" from="A"  to="N1" numLanes="1" speed="13.89" length="2500.0"/>
+    <edge id="via_1B" from="N1" to="B"  numLanes="1" speed="13.89" length="2500.0"/>
+
+    <!-- ===== ROTA 2: ARTERIAL (A -> N2 -> B) ===== -->
+    <!-- Total ~7 km, velocidade max 70 km/h = 19.44 m/s, 2 faixas -->
+    <edge id="via_2A" from="A"  to="N2" numLanes="2" speed="19.44" length="3500.0"/>
+    <edge id="via_2B" from="N2" to="B"  numLanes="2" speed="19.44" length="3500.0"/>
+
+    <!-- ===== ROTA 3: RODOVIA (A -> N3 -> B) ===== -->
+    <!-- Total ~9 km, velocidade max 100 km/h = 27.78 m/s, 2 faixas -->
+    <edge id="via_3A" from="A"  to="N3" numLanes="2" speed="27.78" length="4500.0"/>
+    <edge id="via_3B" from="N3" to="B"  numLanes="2" speed="27.78" length="4500.0"/>
+</edges>

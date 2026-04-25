@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Cenario D: Rota Urbana com caminhao Euro III (comparacao) -->
+<configuration>
+    <input>
+        <net-file value="../rede/rede_frete.net.xml"/>
+        <route-files value="../rotas/rotas_cenario_D.rou.xml"/>
+    </input>
+    <output>
+        <emission-output value="../resultados/emissoes_cenario_D.xml"/>
+        <tripinfo-output value="../resultados/tripinfo_cenario_D.xml"/>
+        <summary-output value="../resultados/summary_cenario_D.xml"/>
+    </output>
+    <time>
+        <begin value="0"/>
+        <end value="1200"/>
+        <step-length value="1.0"/>
+    </time>
+    <processing>
+        <default.speeddev value="0"/>
+    </processing>
+</configuration>

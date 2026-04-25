@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-04-25T13:54:14.949897+00:00 by Eclipse SUMO sumo 1.26.0
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="configs/../rede/rede_frete.net.xml"/>
+        <route-files value="configs/../rotas/rotas_cenario_D.rou.xml"/>
+    </input>
+
+    <output>
+        <emission-output value="configs/../resultados/emissoes_cenario_D.xml"/>
+        <summary-output value="configs/../resultados/summary_cenario_D.xml"/>
+        <tripinfo-output value="configs/../resultados/tripinfo_cenario_D.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="1200"/>
+        <step-length value="1.0"/>
+    </time>
+
+    <processing>
+        <default.speeddev value="0"/>
+    </processing>
+
+</sumoConfiguration>
+-->
+
+<tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+    <tripinfo id="camD_0" depart="0.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="375.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.84" duration="375.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="15.26" rerouteNo="0" devices="tripinfo_camD_0 emissions_camD_0" vType="caminhao_euroIII" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6528.49" CO2_abs="5120508.63" HC_abs="1387.57" PMx_abs="754.35" NOx_abs="40926.89" fuel_abs="1610771.59" electricity_abs="0.00"/>
+    </tripinfo>
+    <tripinfo id="camD_1" depart="60.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="435.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.54" duration="375.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="15.08" rerouteNo="0" devices="tripinfo_camD_1 emissions_camD_1" vType="caminhao_euroIII" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6441.93" CO2_abs="5106239.05" HC_abs="1369.16" PMx_abs="745.06" NOx_abs="40778.83" fuel_abs="1606276.28" electricity_abs="0.00"/>
+    </tripinfo>
+    <tripinfo id="camD_2" depart="120.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="495.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.61" duration="375.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="15.30" rerouteNo="0" devices="tripinfo_camD_2 emissions_camD_2" vType="caminhao_euroIII" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6609.10" CO2_abs="5156077.44" HC_abs="1404.66" PMx_abs="763.32" NOx_abs="41227.59" fuel_abs="1621963.93" electricity_abs="0.00"/>
+    </tripinfo>
+    <tripinfo id="camD_3" depart="180.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="556.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.87" duration="376.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="16.05" rerouteNo="0" devices="tripinfo_camD_3 emissions_camD_3" vType="caminhao_euroIII" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6551.43" CO2_abs="5141435.36" HC_abs="1392.72" PMx_abs="756.98" NOx_abs="41097.39" fuel_abs="1617354.14" electricity_abs="0.00"/>
+    </tripinfo>
+    <tripinfo id="camD_4" depart="240.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="614.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.50" duration="374.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="14.89" rerouteNo="0" devices="tripinfo_camD_4 emissions_camD_4" vType="caminhao_euroIII" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6483.06" CO2_abs="5109990.65" HC_abs="1377.80" PMx_abs="749.46" NOx_abs="40824.81" fuel_abs="1607459.91" electricity_abs="0.00"/>
+    </tripinfo>
+</tripinfos>

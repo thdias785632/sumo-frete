@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-04-25T13:53:28.397811+00:00 by Eclipse SUMO netconvert 1.26.0
+<netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="/home/ubuntu/sumo-frete/rede/input/nos.nod.xml"/>
+        <edge-files value="/home/ubuntu/sumo-frete/rede/input/vias.edg.xml"/>
+    </input>
+
+    <output>
+        <output-file value="/home/ubuntu/sumo-frete/rede/rede_frete.net.xml"/>
+    </output>
+
+    <tls_building>
+        <tls.default-type value="static"/>
+    </tls_building>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+    </junctions>
+
+</netconvertConfiguration>
+-->
+
+<net version="1.20" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,3969.00" convBoundary="0.00,0.00,5000.00,3969.00" origBoundary="0.00,-3969.00,5000.00,0.00" projParameter="!"/>
+
+    <edge id=":N1_0" function="internal">
+        <lane id=":N1_0_0" index="0" speed="13.89" length="0.10" shape="2500.00,3967.40 2500.00,3967.40"/>
+    </edge>
+    <edge id=":N2_0" function="internal">
+        <lane id=":N2_0_0" index="0" speed="6.08" length="7.63" shape="2496.64,1515.57 2498.32,1514.34 2500.00,1513.93 2501.68,1514.34 2503.36,1515.57"/>
+        <lane id=":N2_0_1" index="1" speed="3.91" length="2.54" shape="2498.88,1517.86 2499.44,1517.45 2500.00,1517.31 2500.56,1517.45 2501.12,1517.86"/>
+    </edge>
+    <edge id=":N3_0" function="internal">
+        <lane id=":N3_0_0" index="0" speed="6.15" length="10.68" shape="2495.94,-2.56 2497.97,-4.98 2500.00,-5.78 2502.03,-4.98 2504.06,-2.56"/>
+        <lane id=":N3_0_1" index="1" speed="3.94" length="3.56" shape="2498.65,-0.85 2499.32,-1.66 2500.00,-1.93 2500.68,-1.66 2501.35,-0.85"/>
+    </edge>
+
+    <edge id="via_1A" from="A" to="N1" priority="-1" length="2500.00">
+        <lane id="via_1A_0" index="0" speed="13.89" length="2500.00" shape="4.77,3967.40 2500.00,3967.40"/>
+    </edge>
+    <edge id="via_1B" from="N1" to="B" priority="-1" length="2500.00">
+        <lane id="via_1B_0" index="0" speed="13.89" length="2500.00" shape="2500.00,3967.40 4995.23,3967.40"/>
+    </edge>
+    <edge id="via_2A" from="A" to="N2" priority="-1" length="3500.00">
+        <lane id="via_2A_0" index="0" speed="19.44" length="3500.00" shape="16.94,3945.68 2496.64,1515.57"/>
+        <lane id="via_2A_1" index="1" speed="19.44" length="3500.00" shape="19.18,3947.96 2498.88,1517.86"/>
+    </edge>
+    <edge id="via_2B" from="N2" to="B" priority="-1" length="3500.00">
+        <lane id="via_2B_0" index="0" speed="19.44" length="3500.00" shape="2503.36,1515.57 4983.06,3945.68"/>
+        <lane id="via_2B_1" index="1" speed="19.44" length="3500.00" shape="2501.12,1517.86 4980.82,3947.96"/>
+    </edge>
+    <edge id="via_3A" from="A" to="N3" priority="-1" length="4500.00">
+        <lane id="via_3A_0" index="0" speed="27.78" length="4500.00" shape="11.49,3941.76 2495.94,-2.56"/>
+        <lane id="via_3A_1" index="1" speed="27.78" length="4500.00" shape="14.19,3943.46 2498.65,-0.85"/>
+    </edge>
+    <edge id="via_3B" from="N3" to="B" priority="-1" length="4500.00">
+        <lane id="via_3B_0" index="0" speed="27.78" length="4500.00" shape="2504.06,-2.56 4988.51,3941.76"/>
+        <lane id="via_3B_1" index="1" speed="27.78" length="4500.00" shape="2501.35,-0.85 4985.81,3943.46"/>
+    </edge>
+
+    <tlLogic id="N1" type="static" programID="0" offset="0">
+        <phase duration="82" state="G"/>
+        <phase duration="3"  state="y"/>
+        <phase duration="5"  state="r"/>
+    </tlLogic>
+
+    <junction id="A" type="dead_end" x="0.00" y="3969.00" incLanes="" intLanes="" shape="4.77,3969.00 4.77,3965.80 6.23,3963.44 8.67,3960.78 11.97,3957.38 15.92,3953.42 20.30,3949.11 15.82,3944.54 15.55,3944.32 10.13,3940.91 5.07,3949.49 1.67,3956.51 -0.06,3961.98 -0.12,3965.88 1.49,3968.22"/>
+    <junction id="B" type="dead_end" x="5000.00" y="3969.00" incLanes="via_3B_0 via_3B_1 via_2B_0 via_2B_1 via_1B_0" intLanes="" shape="4989.87,3940.91 4984.45,3944.32 4984.18,3944.54 4979.70,3949.11 4984.08,3953.42 4988.03,3957.38 4991.33,3960.78 4993.77,3963.44 4995.15,3965.18 4995.23,3965.80 4995.23,3969.00 4998.51,3968.22 5000.12,3965.88 5000.06,3961.98 4998.33,3956.51 4994.93,3949.49"/>
+    <junction id="N1" type="traffic_light" x="2500.00" y="3969.00" incLanes="via_1A_0" intLanes=":N1_0_0" shape="2500.00,3969.00 2500.00,3965.80 2500.00,3969.00">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="N2" type="priority" x="2500.00" y="1519.00" incLanes="via_2A_0 via_2A_1" intLanes=":N2_0_0 :N2_0_1" shape="2500.00,1519.00 2504.48,1514.43 2501.49,1512.48 2500.00,1512.23 2498.51,1512.48 2497.01,1513.21 2495.52,1514.43">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+    <junction id="N3" type="priority" x="2500.00" y="0.00" incLanes="via_3A_0 via_3A_1" intLanes=":N3_0_0 :N3_0_1" shape="2500.00,0.00 2505.42,-3.41 2503.61,-5.80 2501.81,-7.23 2500.00,-7.71 2498.19,-7.23 2496.39,-5.80 2494.58,-3.41">
+        <request index="0" response="00" foes="00" cont="0"/>
+        <request index="1" response="00" foes="00" cont="0"/>
+    </junction>
+
+    <connection from="via_1A" to="via_1B" fromLane="0" toLane="0" via=":N1_0_0" tl="N1" linkIndex="0" dir="s" state="O"/>
+    <connection from="via_2A" to="via_2B" fromLane="0" toLane="0" via=":N2_0_0" dir="l" state="M"/>
+    <connection from="via_2A" to="via_2B" fromLane="1" toLane="1" via=":N2_0_1" dir="l" state="M"/>
+    <connection from="via_3A" to="via_3B" fromLane="0" toLane="0" via=":N3_0_0" dir="l" state="M"/>
+    <connection from="via_3A" to="via_3B" fromLane="1" toLane="1" via=":N3_0_1" dir="l" state="M"/>
+
+    <connection from=":N1_0" to="via_1B" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":N2_0" to="via_2B" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":N2_0" to="via_2B" fromLane="1" toLane="1" dir="l" state="M"/>
+    <connection from=":N3_0" to="via_3B" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":N3_0" to="via_3B" fromLane="1" toLane="1" dir="l" state="M"/>
+
+</net>

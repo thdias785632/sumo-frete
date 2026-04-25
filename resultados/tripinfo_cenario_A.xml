@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-04-25T13:54:12.458437+00:00 by Eclipse SUMO sumo 1.26.0
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="configs/../rede/rede_frete.net.xml"/>
+        <route-files value="configs/../rotas/rotas_cenario_A.rou.xml"/>
+    </input>
+
+    <output>
+        <emission-output value="configs/../resultados/emissoes_cenario_A.xml"/>
+        <summary-output value="configs/../resultados/summary_cenario_A.xml"/>
+        <tripinfo-output value="configs/../resultados/tripinfo_cenario_A.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="1200"/>
+        <step-length value="1.0"/>
+    </time>
+
+    <processing>
+        <default.speeddev value="0"/>
+    </processing>
+
+</sumoConfiguration>
+-->
+
+<tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+    <tripinfo id="camA_0" depart="0.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="375.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.84" duration="375.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="15.26" rerouteNo="0" devices="tripinfo_camA_0 emissions_camA_0" vType="caminhao_euroIV" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6326.52" CO2_abs="5129894.06" HC_abs="159.00" PMx_abs="121.27" NOx_abs="33352.23" fuel_abs="1613388.51" electricity_abs="0.00"/>
+    </tripinfo>
+    <tripinfo id="camA_1" depart="60.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="435.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.54" duration="375.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="15.08" rerouteNo="0" devices="tripinfo_camA_1 emissions_camA_1" vType="caminhao_euroIV" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6282.44" CO2_abs="5122801.23" HC_abs="158.01" PMx_abs="120.46" NOx_abs="33236.23" fuel_abs="1611170.89" electricity_abs="0.00"/>
+    </tripinfo>
+    <tripinfo id="camA_2" depart="120.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="495.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.61" duration="375.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="15.30" rerouteNo="0" devices="tripinfo_camA_2 emissions_camA_2" vType="caminhao_euroIV" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6383.58" CO2_abs="5161804.07" HC_abs="160.38" PMx_abs="122.33" NOx_abs="33594.56" fuel_abs="1623417.53" electricity_abs="0.00"/>
+    </tripinfo>
+    <tripinfo id="camA_3" depart="180.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="556.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.87" duration="376.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="16.05" rerouteNo="0" devices="tripinfo_camA_3 emissions_camA_3" vType="caminhao_euroIV" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6353.34" CO2_abs="5151294.20" HC_abs="159.65" PMx_abs="121.85" NOx_abs="33492.90" fuel_abs="1620120.39" electricity_abs="0.00"/>
+    </tripinfo>
+    <tripinfo id="camA_4" depart="240.00" departLane="via_1A_0" departPos="12.10" departSpeed="0.00" departDelay="0.00" arrival="614.00" arrivalLane="via_1B_0" arrivalPos="2500.00" arrivalSpeed="13.50" duration="374.00" routeLength="4988.00" waitingTime="0.00" waitingCount="0" stopTime="0.00" timeLoss="14.89" rerouteNo="0" devices="tripinfo_camA_4 emissions_camA_4" vType="caminhao_euroIV" speedFactor="1.00" vaporized="">
+        <emissions CO_abs="6300.15" CO2_abs="5122713.65" HC_abs="158.40" PMx_abs="120.76" NOx_abs="33270.63" fuel_abs="1611136.10" electricity_abs="0.00"/>
+    </tripinfo>
+</tripinfos>

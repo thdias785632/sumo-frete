@@ -1,18 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Analise comparativa de emissoes dos cenarios de frete.
-ESTU024-17 - Analise de Sistemas e Modelagem Ambiental (ASMA) - UFABC
 
-Leitura dos arquivos emission-output do SUMO e geracao de:
-  - Tabela comparativa (terminal + CSV)
-  - Grafico comparativo (PNG)
-"""
-
-import os
 import sys
 from pathlib import Path
-
 import pandas as pd
 from lxml import etree
 import matplotlib
@@ -20,9 +8,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
-# ---------------------------------------------------------------------------
-# Configuracao
-# ---------------------------------------------------------------------------
 RESULTADOS_DIR = Path(__file__).resolve().parent.parent / "resultados"
 ANALISE_DIR = Path(__file__).resolve().parent
 
@@ -59,12 +44,7 @@ UNIDADES = {
     "fuel": "ml",
 }
 
-
-# ---------------------------------------------------------------------------
-# Funcoes
-# ---------------------------------------------------------------------------
 def ler_emissoes(caminho: Path) -> dict:
-    """Le um arquivo emission-output do SUMO e soma as emissoes totais."""
     tree = etree.parse(str(caminho))
     root = tree.getroot()
 
@@ -80,7 +60,6 @@ def ler_emissoes(caminho: Path) -> dict:
 
 
 def ler_tripinfo(caminho: Path) -> dict:
-    """Le tripinfo para obter tempo medio de viagem e distancia."""
     tree = etree.parse(str(caminho))
     root = tree.getroot()
 
@@ -103,7 +82,6 @@ def ler_tripinfo(caminho: Path) -> dict:
 
 
 def construir_tabela(dados: dict) -> pd.DataFrame:
-    """Constroi DataFrame comparativo com totais e valores por km."""
     linhas = []
     for cen, info in dados.items():
         dist_km = info["trip"]["distancia_m"] / 1000
@@ -126,7 +104,6 @@ def construir_tabela(dados: dict) -> pd.DataFrame:
 
 
 def gerar_grafico(df: pd.DataFrame):
-    """Gera grafico comparativo de CO2 e NOx."""
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))
     fig.suptitle(
         "Comparativo de Emissoes por Cenario de Frete\n"
@@ -166,7 +143,6 @@ def gerar_grafico(df: pd.DataFrame):
 
 
 def gerar_grafico_todos_poluentes(df: pd.DataFrame):
-    """Gera grafico com todos os poluentes."""
     fig, axes = plt.subplots(2, 3, figsize=(18, 10))
     fig.suptitle(
         "Emissoes Detalhadas por Cenario\nESTU024-17 - ASMA / UFABC",
@@ -200,10 +176,6 @@ def gerar_grafico_todos_poluentes(df: pd.DataFrame):
     plt.close()
     print(f"Grafico detalhado salvo em: {saida}")
 
-
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 def main():
     print("=" * 70)
     print("  ANALISE DE EMISSOES - PROJETO FRETE SUMO")
@@ -248,7 +220,6 @@ def main():
     gerar_grafico(df)
     gerar_grafico_todos_poluentes(df)
 
-    # Tabela de emissoes por km por veiculo
     print("\n" + "=" * 70)
     print("  EMISSOES POR KM POR VEICULO (normalizadas)")
     print("=" * 70)
@@ -293,8 +264,6 @@ def main():
             print(f"  => Rodovia emite {diff_km:.1f}% MAIS CO2/km que Urbana")
 
     if "A" in dados and "D" in dados:
-        co2_euroIV = dados["A"]["emissoes"]["CO2"]
-        co2_euroIII = dados["D"]["emissoes"]["CO2"]
         nox_euroIV = dados["A"]["emissoes"]["NOx"]
         nox_euroIII = dados["D"]["emissoes"]["NOx"]
         pmx_euroIV = dados["A"]["emissoes"]["PMx"]
@@ -309,7 +278,6 @@ def main():
         print(f"     em NOx e material particulado.")
 
     print()
-
 
 if __name__ == "__main__":
     main()
